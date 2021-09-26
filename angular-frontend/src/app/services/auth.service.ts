@@ -17,9 +17,13 @@ export class AuthService {
     headers.set('Content-Type','application/json')
     return this.http.post(this.serverUrl  + '/register', user,{headers:headers})
   }
-addGoogleUser():Observable<any>{
-  return this.http.get("http://localhost:5000/auth/google");
-}
+
+  socialLogin(user:Object):Observable<any>{
+    const headers = new HttpHeaders()
+    headers.set('Content-Type','application/json')
+    console.log(user)
+    return this.http.post(`${this.serverUrl}/sociallogin`,user,{headers:headers});
+  }
   authenticateUser(user: Object):Observable<any>{
     const headers = new HttpHeaders()
     headers.set('content-type','application/json')

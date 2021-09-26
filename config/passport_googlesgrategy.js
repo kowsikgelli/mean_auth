@@ -11,5 +11,6 @@ passport.use(new GoogleStrategy({
     console.log(profile._json.sub)
     console.log(profile._json.email)
     console.log(profile._json.name)
+    console.log(profile)
   }
 ));
