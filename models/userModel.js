@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 const UserSchema = new mongoose.Schema({
@@ -19,12 +19,13 @@ const UserSchema = new mongoose.Schema({
 
 UserSchema.pre('save',async function(next){
     if(this.isModified('password')){
-        const salt = await bcrypt.genSalt(20);
+        const salt = await bcrypt.genSalt(2);
         this.password = await bcrypt.hash(this.password,salt);
     }else{
         res.send({success:false,message:"password modified before saving into database"})
     }
 })
+
 UserSchema.methods.matchpassword = async function(password){
     return await bcrypt.compare(password,this.password);
 }

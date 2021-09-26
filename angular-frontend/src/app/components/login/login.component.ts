@@ -39,4 +39,9 @@ export class LoginComponent implements OnInit {
       }
     })
   }
+  onGoogleSubmit(){
+    this.authService.addGoogleUser().subscribe(data=>{
+      console.log(data)
+    })
+  }
 }

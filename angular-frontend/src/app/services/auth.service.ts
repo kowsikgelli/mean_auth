@@ -14,10 +14,12 @@ export class AuthService {
 
   addUser(user: Object):Observable<any>{
     const headers = new HttpHeaders()
-    headers.set('content-type','application/json')
+    headers.set('Content-Type','application/json')
     return this.http.post(this.serverUrl  + '/register', user,{headers:headers})
   }
-
+addGoogleUser():Observable<any>{
+  return this.http.get("http://localhost:5000/auth/google");
+}
   authenticateUser(user: Object):Observable<any>{
     const headers = new HttpHeaders()
     headers.set('content-type','application/json')

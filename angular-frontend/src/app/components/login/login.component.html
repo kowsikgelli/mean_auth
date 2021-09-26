@@ -7,7 +7,6 @@
       <br>
       <input type="text" name="email" placeholder="E-mail" [(ngModel)] = email/>
       <input type="password" name="password" placeholder="Password" [(ngModel)] = password/>
-      
       <input type="submit" name="signup_submit" value="Sign In" />
     </form>
     </div>
@@ -17,7 +16,7 @@
       
       <button class="social-signin facebook">Log in with facebook</button>
       <button class="social-signin twitter">Log in with Twitter</button>
-      <button class="social-signin google">Log in with Google+</button>
+      <button class="social-signin google" (click)="onGoogleSubmit()">Log in with Google+</button>
     </div>
     <div class="or">OR</div>
   </div>

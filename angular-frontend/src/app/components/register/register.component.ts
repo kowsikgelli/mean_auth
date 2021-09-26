@@ -39,6 +39,7 @@ export class RegisterComponent implements OnInit {
     if(!this.validateService.validateEmail(user.email)){
       this.flashMessagesService.show("please enter valid email",{cssClass:'alert-danger',timeout:3000})
       this.loading = false
+      return false
     }
     this.authService.addUser(user).subscribe(data=>{
       if(data.success){
