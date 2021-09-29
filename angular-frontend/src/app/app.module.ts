@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { FlashMessagesModule } from 'flash-messages-angular';
 import { HttpClientModule } from '@angular/common/http';
-import { SocialAuthServiceConfig,SocialLoginModule,GoogleLoginProvider,FacebookLoginProvider} from 'angularx-social-login';
+import { SocialAuthServiceConfig,SocialLoginModule,GoogleLoginProvider} from 'angularx-social-login';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -41,10 +41,6 @@ import { ProfileComponent } from './components/profile/profile.component';
             provider: new GoogleLoginProvider(
               '864971037741-dq3o1n51o2nud80ruqabvivnthisiksg.apps.googleusercontent.com'
             )
-          },
-          {
-            id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('clientId')
           }
         ]
       } as SocialAuthServiceConfig,

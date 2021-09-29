@@ -15,12 +15,14 @@ export class NavbarComponent implements OnInit {
     public authService:AuthService,
     private router:Router,
     private flashmessages:FlashMessagesService,
+    private socialAuthService: SocialAuthService
   ) { }
 
   ngOnInit(): void {
   }
 
   onLogout(){
+    this.socialAuthService.signOut();
     this.authService.logout();
     this.flashmessages.show("You logged Out",{cssClass:'alert-success',timeout:5000})
     this.router.navigate(['register'])

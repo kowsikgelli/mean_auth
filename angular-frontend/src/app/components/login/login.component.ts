@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
         this.user = user;
         //console.log(user)
         this.authService.socialLogin({username:user.name,email:user.email,password:user.id}).subscribe((data)=>{
+          console.log(user)
           if(data.success){
             this.authService.storeUser(data.message,data.user)
             this.flashMessages.show('Logged In Successful',{cssClass:"alert-success",timeout:5000})

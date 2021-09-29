@@ -13,7 +13,6 @@ export class RegisterComponent implements OnInit {
   username: string = ''
   email: string = ''
   password: string =''
-  loading: boolean = false
   constructor(
     private validateService: ValidateService, 
     private flashMessagesService: FlashMessagesService,
@@ -24,7 +23,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit(){
-    this.loading = true
     const user = {
       username: this.username,
       email: this.email,
@@ -32,13 +30,11 @@ export class RegisterComponent implements OnInit {
     }
     if(!this.validateService.validateRegister(user)){
       this.flashMessagesService.show("please Fill All The Fields",{cssClass:'alert-danger',timeout:3000})
-      this.loading = false
       return false
     }
 
     if(!this.validateService.validateEmail(user.email)){
       this.flashMessagesService.show("please enter valid email",{cssClass:'alert-danger',timeout:3000})
-      this.loading = false
       return false
     }
     this.authService.addUser(user).subscribe(data=>{
@@ -49,7 +45,6 @@ export class RegisterComponent implements OnInit {
         this.flashMessagesService.show(data.message,{cssClass:'alert-danger',timeout:3000})
       }
     })
-    this.loading = false
     return true
 
   }

@@ -9,25 +9,25 @@ import { User } from '../interfaces/user';
 export class AuthService {
   JwtAuthToken:any
   user:any
-  serverUrl = "http://localhost:5000/user"
+  serverUrl = "/api"
   constructor(private http: HttpClient) { }
 
   addUser(user: Object):Observable<any>{
     const headers = new HttpHeaders()
     headers.set('Content-Type','application/json')
-    return this.http.post(this.serverUrl  + '/register', user,{headers:headers})
+    return this.http.post(this.serverUrl  + '/user/register', user,{headers:headers})
   }
 
   socialLogin(user:Object):Observable<any>{
     const headers = new HttpHeaders()
     headers.set('Content-Type','application/json')
     console.log(user)
-    return this.http.post(`${this.serverUrl}/sociallogin`,user,{headers:headers});
+    return this.http.post(`${this.serverUrl}/user/sociallogin`,user,{headers:headers});
   }
   authenticateUser(user: Object):Observable<any>{
     const headers = new HttpHeaders()
     headers.set('content-type','application/json')
-    return this.http.post(`${this.serverUrl}/authenticate`, user,{headers:headers}) 
+    return this.http.post(`${this.serverUrl}/user/authenticate`, user,{headers:headers}) 
   }
 
   getProfile():Observable<any>{
@@ -35,9 +35,7 @@ export class AuthService {
     const headers = new HttpHeaders()
       .set('content-type','application/json')
       .set("Authorization",this.JwtAuthToken)
-    console.log(this.JwtAuthToken)
-    console.log(headers.get("Authorization"))
-    return this.http.get(`${this.serverUrl}/profile`,{headers:headers})
+    return this.http.get(`${this.serverUrl}/user/profile`,{headers:headers})
   }
 
   loadToken(){
@@ -46,7 +44,7 @@ export class AuthService {
   }
   storeUser(jwtToken: any,user: any):any{
     localStorage.setItem('id_token',jwtToken)
-    localStorage.setItem('user',JSON.stringify(user))
+    //localStorage.setItem('user',JSON.stringify(user))
     this.JwtAuthToken = jwtToken;
     this.user = user;
   }
